@@ -12,6 +12,10 @@ public interface MauSacService {
 
     Optional<MauSac> getMauSac(UUID id);
 
+    void addMauSac(MauSac mauSac);
+
+    void updateMauSac(MauSac mauSac, UUID id);
+
     void removeMauSac(UUID id);
 
 }

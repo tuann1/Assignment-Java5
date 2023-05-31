@@ -27,6 +27,19 @@ public class MauSacServiceImplement implements MauSacService {
     }
 
     @Override
+    public void addMauSac(MauSac mauSac) {
+        mauSacRepository.save(mauSac);
+    }
+
+    @Override
+    public void updateMauSac(MauSac mauSac, UUID id) {
+        MauSac mauSac1 = mauSacRepository.findById(id).get();
+        mauSac1.setMa(mauSac.getMa());
+        mauSac1.setTen(mauSac.getTen());
+        mauSacRepository.save(mauSac1);
+    }
+
+    @Override
     public void removeMauSac(UUID id) {
         mauSacRepository.deleteById(id);
     }

@@ -13,21 +13,11 @@
 </header>
 
 <section>
-    <div class="container">
-        <form action="/mau-sac/search" method="get">
-            Mã: <input type="text" name="ma"/>
-            <br/>
-            <button class="btn btn-success col-1 m-3" type="submit">
-                <a style="text-decoration-line: none; color: aliceblue">Search</a>
-            </button>
-        </form>
-
-        <form:form action="/mau-sac/add" method="post" modelAttribute="ms">
+        <form:form action="/mau-sac/update" method="post" modelAttribute="ms">
             <div class="row mt-4">
                 <div class="col-6">
                     <label>ID</label>
                     <form:input type="text" class="form-control" path="id"/>
-                    <form:errors path="id"/>
                 </div>
             </div>
             <div class="row mt-4">
@@ -46,40 +36,10 @@
             </div>
 
             <form:button class="btn btn-success col-1 m-3" type="submit">
-                ADD
+                UPDATE
             </form:button>
         </form:form>
     </div>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Mã</th>
-            <th scope="col">Tên</th>
-            <th scope="col">Chức năng</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${listMauSac}" var="mau" varStatus="viTri">
-            <tr>
-                <td>${mau.id}</td>
-                <td>${mau.ma}</td>
-                <td>${mau.ten}</td>
-                <td>
-                    <a class="btn" href="/mau-sac/detail/${mau.id}" tabindex="-1" role="button" aria-disabled="true">Detail</a>
-
-                    <a class="btn" href="/mau-sac/view-update/${mau.id}" tabindex="-1"
-                       role="button"
-                       aria-disabled="true">Update</a>
-                    <a class="btn" href="/mau-sac/remove/${mau.id}" tabindex="-1"
-                       role="button"
-                       aria-disabled="true">Remove</a>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
 
 </section>
 
