@@ -14,7 +14,7 @@
 
 <section>
     <div class="container">
-        <form action="/mau-sac/search" method="get">
+        <form action="/mau-sac/search/${currentPage}" method="get">
             Mã: <input type="text" name="ma"/>
             <br/>
             <button class="btn btn-success col-1 m-3" type="submit">
@@ -48,6 +48,7 @@
             <form:button class="btn btn-success col-1 m-3" type="submit">
                 ADD
             </form:button>
+            <label style="color: red">${msg}</label>
         </form:form>
     </div>
 
@@ -67,19 +68,44 @@
                 <td>${mau.ma}</td>
                 <td>${mau.ten}</td>
                 <td>
-                    <a class="btn" href="/mau-sac/detail/${mau.id}" tabindex="-1" role="button" aria-disabled="true">Detail</a>
-
-                    <a class="btn" href="/mau-sac/view-update/${mau.id}" tabindex="-1"
-                       role="button"
+                    <a href="/mau-sac/view-update/${mau.id}" tabindex="-1"
+                       role="button" class="btn btn-primary"
                        aria-disabled="true">Update</a>
-                    <a class="btn" href="/mau-sac/remove/${mau.id}" tabindex="-1"
-                       role="button"
+                    <a href="/mau-sac/remove/${mau.id}" tabindex="-1"
+                       role="button" class="btn btn-danger"
                        aria-disabled="true">Remove</a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
+    <div>
+        Total Items: ${totalItems} - Page ${currentPage} of ${totalPages}
+        &nbsp;
+        <c:forEach var="i" begin="1" end="${totalPages}">
+        <span>
+                <a href="/mau-sac/hien-thi/${i}">${i}</a>
+        </span> &nbsp;&nbsp;
+        </c:forEach>
+
+        <c:choose>
+            <c:when test="${currentPage < totalPages}">
+                <a href="/mau-sac/hien-thi/${currentPage + 1}">Next</a>
+            </c:when>
+            <c:otherwise>
+                <span>Next</span>
+            </c:otherwise>
+        </c:choose>
+        <c:choose>
+            <c:when test="${currentPage > 1}">
+                <a href="/mau-sac/hien-thi/${currentPage - 1}">Previous</a>
+            </c:when>
+            <c:otherwise>
+                <span>Previous</span>
+            </c:otherwise>
+        </c:choose>
+    </div>
 
 </section>
 

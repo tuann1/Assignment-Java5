@@ -4,6 +4,9 @@ import com.example.demo.entity.MauSac;
 import com.example.demo.repository.MauSacRepository;
 import com.example.demo.service.MauSacService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,13 +20,25 @@ public class MauSacServiceImplement implements MauSacService {
     private MauSacRepository mauSacRepository;
 
     @Override
-    public List<MauSac> getAll() {
-        return mauSacRepository.findAll();
+    public Page<MauSac> getAll(int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, 5);
+        return mauSacRepository.findAll(pageable);
     }
 
     @Override
     public Optional<MauSac> getMauSac(UUID id) {
         return mauSacRepository.findById(id);
+    }
+
+    @Override
+    public MauSac findMauSacByMa(String ma) {
+        List<MauSac> ds = mauSacRepository.findAll();
+        for (MauSac mauSac : ds) {
+            if (mauSac.getMa().equals(ma)) {
+                return mauSac;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -42,6 +57,12 @@ public class MauSacServiceImplement implements MauSacService {
     @Override
     public void removeMauSac(UUID id) {
         mauSacRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<MauSac> search(String ma, int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, 5);
+        return mauSacRepository.search(ma, pageable);
     }
 
 }
