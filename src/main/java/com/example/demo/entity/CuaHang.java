@@ -7,7 +7,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,13 +18,14 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "CuaHang")
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 @Builder
-@Table(name = "MauSac")
-public class MauSac {
+
+public class CuaHang {
 
     @Id
     @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
@@ -34,14 +34,21 @@ public class MauSac {
     private UUID id;
 
     @Column(name = "Ma")
-    @NotBlank(message = "Không được để trống mã.")
     private String ma;
 
     @Column(name = "Ten")
-    @NotBlank(message = "Không được để trống tên.")
     private String ten;
 
-    @OneToMany(mappedBy = "mauSac", fetch = FetchType.LAZY)
-    List<ChiTietSanPham> listChiTietSanPham;
+    @Column(name = "DiaChi")
+    private String diaChi;
+
+    @Column(name = "ThanhPho")
+    private String thanhPho;
+
+    @Column(name = "QuocGia")
+    private String quocGia;
+
+    @OneToMany(mappedBy = "cuaHang", fetch = FetchType.LAZY)
+    List<NhanVien> listNv;
 
 }

@@ -18,14 +18,16 @@ import org.hibernate.annotations.GenericGenerator;
 import java.util.List;
 import java.util.UUID;
 
+
 @Entity
-@Getter
-@Setter
+@Table(name = "SanPham")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
-@Table(name = "MauSac")
-public class MauSac {
+
+public class SanPham {
 
     @Id
     @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
@@ -41,7 +43,7 @@ public class MauSac {
     @NotBlank(message = "Không được để trống tên.")
     private String ten;
 
-    @OneToMany(mappedBy = "mauSac", fetch = FetchType.LAZY)
-    List<ChiTietSanPham> listChiTietSanPham;
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
+    List<ChiTietSanPham> listCtsp;
 
 }

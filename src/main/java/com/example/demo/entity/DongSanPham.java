@@ -19,13 +19,14 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "DongSP")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
-@Table(name = "MauSac")
-public class MauSac {
+
+public class DongSanPham {
 
     @Id
     @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
@@ -41,7 +42,7 @@ public class MauSac {
     @NotBlank(message = "Không được để trống tên.")
     private String ten;
 
-    @OneToMany(mappedBy = "mauSac", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "dongSanPham", fetch = FetchType.LAZY)
     List<ChiTietSanPham> listChiTietSanPham;
 
 }
