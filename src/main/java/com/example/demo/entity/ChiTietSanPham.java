@@ -7,7 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -50,18 +51,23 @@ public class ChiTietSanPham {
     private DongSanPham dongSanPham;
 
     @Column(name = "NamBH")
+    @PositiveOrZero(message = "Năm bảo hành phải là số nguyên dương.")
     private Integer namBaoHanh;
 
     @Column(name = "MoTa")
+    @NotBlank(message = "Vui lòng không bỏ trống.")
     private String moTa;
 
     @Column(name = "SoLuongTon")
+    @PositiveOrZero(message = "Vui lòng nhập số nguyên dương và lớn hơn 0.")
     private Integer soLuongTon;
 
     @Column(name = "GiaNhap")
+    @PositiveOrZero(message = "Vui lòng nhập số nguyên dương và lớn hơn 0.")
     private Long giaNhap;
 
     @Column(name = "GiaBan")
+    @PositiveOrZero(message = "Vui lòng nhập số nguyên dương và lớn hơn 0.")
     private Long giaBan;
 
 }

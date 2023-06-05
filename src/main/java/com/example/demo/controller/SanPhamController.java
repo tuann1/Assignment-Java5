@@ -50,7 +50,7 @@ public class SanPhamController {
 
     @GetMapping("/san-pham/detail/{id}")
     public String detailSanPham(@PathVariable("id") UUID id, Model model,
-                               @PathVariable("pageNumber") int currentPage) {
+                                @PathVariable("pageNumber") int currentPage) {
         Optional<SanPham> sanPham = sanPhamService.getSanPham(id);
         model.addAttribute("sp", sanPham);
 
@@ -82,7 +82,7 @@ public class SanPhamController {
 
     @PostMapping("/san-pham/add")
     public String addSanPham1(Model model, @Valid @ModelAttribute("sp") SanPham sanPham,
-                             BindingResult result, @RequestParam("ma") String ma) {
+                              BindingResult result, @RequestParam("ma") String ma) {
         if (result.hasErrors()) {
             return "san-pham";
         } else {
@@ -106,7 +106,7 @@ public class SanPhamController {
 
     @PostMapping("/san-pham/update")
     public String updateSanPham(Model model, @Valid @ModelAttribute("sp") SanPham sanPham,
-                               BindingResult result, @RequestParam("id") UUID id) {
+                                BindingResult result, @RequestParam("id") UUID id) {
         if (result.hasErrors()) {
             return "update-san-pham";
         }
@@ -116,7 +116,7 @@ public class SanPhamController {
 
     @GetMapping("/san-pham/search/{pageNumber}")
     public String searchSanPham(Model model, @RequestParam("ma") String ma,
-                               @PathVariable("pageNumber") int currentPage) {
+                                @PathVariable("pageNumber") int currentPage) {
 
         Page<SanPham> page = sanPhamService.search(ma, currentPage);
         long totalItems = page.getTotalElements();
