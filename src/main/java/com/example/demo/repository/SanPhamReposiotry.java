@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.DongSanPham;
+import com.example.demo.entity.SanPham;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface DongSanPhamRepository extends JpaRepository<DongSanPham, UUID> {
+public interface SanPhamReposiotry extends JpaRepository<SanPham, UUID> {
 
-    @Query(value = "SELECT * FROM DongSP WHERE Ma LIKE %?1% ", nativeQuery = true)
-    Page<DongSanPham> search(String ma, Pageable pageNumber);
+    @Query(value = "SELECT * FROM SanPham WHERE Ma LIKE %?1% ", nativeQuery = true)
+    Page<SanPham> search(String ma, Pageable pageNumber);
 
 }
